@@ -1,6 +1,9 @@
 # TownSquare
 ### 1. System Diagram
-<img width="1139" alt="Screenshot 2024-03-20 at 3 25 36 PM" src="https://github.com/allan7yin/TownSquare/assets/66652405/5eff91d5-6b0b-421c-b5ce-c630f60ea9c9">
+<img width="1253" alt="Screenshot 2024-03-20 at 6 17 48 PM" src="https://github.com/allan7yin/TownSquare/assets/66652405/8538f204-c5c0-427e-99aa-e6d70b8b2cfd">
+
+
+
 
 ### 2. About
 For this hackathon, I will be building a management platform that consolidates a couple of services that small business would ideally have in order to better connect with their local community. We’ll build this to contain the following features in one application:
