@@ -1,6 +1,7 @@
 # TownSquare
 ### 1. System Diagram
-<img width="1253" alt="Screenshot 2024-03-20 at 6 17 48 PM" src="https://github.com/allan7yin/TownSquare/assets/66652405/8538f204-c5c0-427e-99aa-e6d70b8b2cfd">
+<img width="1223" alt="Screenshot 2024-03-23 at 12 06 18 PM" src="https://github.com/allan7yin/TownSquare/assets/66652405/7731e5a4-e7cd-4f63-85dd-ada33d0f43ef">
+
 
 
 
