@@ -9,6 +9,10 @@ class OFFER_TYPES(BaseEnum):
     points = "points"
     discount = "discount"
 
+class OFFER_STATUS(BaseEnum):
+    active = "active"
+    expired = "expired"
+
 class MEMBER_TIER(BaseEnum):
     entry = "entry"
     plus = "plus"
