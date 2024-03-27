@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine, Column, DateTime, func, UUID
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import uuid
 
 import typing as t
 from sqlalchemy.ext.declarative import declarative_base

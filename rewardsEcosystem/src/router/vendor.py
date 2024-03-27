@@ -16,7 +16,7 @@ router = APIRouter(
 
 # get vendor endpoint by vendor id
 @router.get("/{id}", response_model=vendor_schema.VendorOut)
-def getVendor(id: UUID, db: Session = Depends(core.get_db)):
+async def getVendor(id: UUID, db: Session = Depends(core.get_db)):
     try:
         vendor = vendor_service.get_vendor(db=db, id=id)
         return vendor
@@ -25,8 +25,8 @@ def getVendor(id: UUID, db: Session = Depends(core.get_db)):
 
 
 # get all vendors
-@router.get("/")
-def getVendors(db: Session = Depends(core.get_db)):
+@router.get("/", response_model=vendor_schema.VendorListOut)
+async def getVendors(db: Session = Depends(core.get_db)):
     try:
         vendors = vendor_service.get_vendors(db=db)
         return vendors
@@ -42,7 +42,7 @@ def getVendors(db: Session = Depends(core.get_db)):
 
 # create vendor endpoint
 @router.post("/", response_model=vendor_schema.VendorOut)
-def createVendor(vendor: vendor_schema.VendorIn, db: Session = Depends(core.get_db)):
+async def createVendor(vendor: vendor_schema.VendorIn, db: Session = Depends(core.get_db)):
     try:
         created_vendor = vendor_service.create_vendor(db=db, vendor=vendor)
         return created_vendor

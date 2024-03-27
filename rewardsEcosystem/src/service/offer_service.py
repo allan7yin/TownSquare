@@ -1,46 +1,37 @@
-from typing import List
 from uuid import UUID
-import logging
-from ..enums import OFFER_STATUS
-
-from sqlalchemy import or_
+from ..schema import offer_schema
 from sqlalchemy.orm import Session
+from ..model.offer_model import Offer
 
-from src.model.member_offer_model import MemberOffer
+import logging
 
 logger = logging.getLogger(__name__)  # Get logger for current module
 
-
+"""Gets an offer by id
 """
-Pulbishes offers, creating corresponding member offers for the vendor, offer pair
-    - Find all offers that match the vendor_id, offer_id, and constraints, create member offers for those
+async def get_offer(db: Session, id: UUID):
+    offer = db.query(Offer).get(id)
+    return offer
+
+
+"""Gets all offers
 """
+async def get_offers(db: Session):
+    offers = db.query(Offer).all()
+    return offers
 
 
-def publish_member_offers(db: Session, vendor_ids: List[UUID], offer_id: UUID, constraints):
-    # create member offers for each pair (vendor_id, offer_id)
-    # make API call to square to retrieve this list of memberId's 
-    members = []
-    member_ids = []
-
-    published_member_offers = []
-    for member_id in member_ids:
-        for vendor_id in vendor_ids:
-            published_member_offers.append(
-                create_member_offer(db, member_id, vendor_id, offer_id)
-            )
-    return published_member_offers
-
-
+"""Creates an offer
 """
-Helper function. Creates a single member offer for a single vendor and single offer
-"""
-
-
-def create_member_offer(db: Session, vendor_id: UUID, member_id: UUID, offer_id: UUID):
-    # create a single member offer 
-    db_member_offer = MemberOffer(
-        member_id=member_id, vendor_id=vendor_id, offer_id=offer_id, status=OFFER_STATUS.active
+async def create_offer(db: Session, offer: offer_schema.OfferIn):
+    db_offer = Offer(
+        startDate=offer.startDate,
+        endDate=offer.endDate,
+        description=offer.description,
+        termsAndConditions=offer.termsAndConditions,
+        offerType=offer.offerType
     )
-    return db_member_offer
-    
+    db.add(db_offer)
+    db.commit()
+    db.refresh(db_offer)
+    return db_offer

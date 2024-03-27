@@ -9,6 +9,7 @@ from sqlalchemy import (
     Integer,
     UniqueConstraint,
 )
+from sqlalchemy.orm import relationship
 from ..database.core import Base
 
 
@@ -28,3 +29,6 @@ class Vendor(Base):
     deleted = Column(Boolean, default=False)
 
     __table_args__ = (UniqueConstraint("email", name="unique_email"),)
+
+    # relationship 
+    member_offers = relationship("MemberOffer", backref="Vendor", cascade="all, delete-orphan")
